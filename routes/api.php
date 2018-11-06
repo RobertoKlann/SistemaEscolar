@@ -16,10 +16,10 @@ Route::middleware('auth:api')->get('/', function (Request $request) {
  * @package Routes
  * @since   30/10/2018
  */
-Route::group(['prefix' => 'clientes'], function () {
-    Route::get('', 'ClientesController@getAllClientes');
-    Route::get('{id}', 'ClientesController@getCliente');
-    Route::post('', 'ClientesController@saveCliente');
-    Route::put('{id}', 'ClientesController@updateCLiente');
-    Route::delete('{id}', 'ClientesController@deleteCliente');
+Route::group(['prefix' => 'alunos'], function () {
+    Route::get('', 'ControllerAlunos@getAllAlunos');
+    Route::get('{id}', 'ControllerAlunos@getAluno');
+    Route::post('', 'ControllerAlunos@saveAluno');
+    Route::put('{id}', 'ControllerAlunos@updateAluno');
+    Route::delete('{id}', 'ControllerAlunos@deleteAluno');
 });

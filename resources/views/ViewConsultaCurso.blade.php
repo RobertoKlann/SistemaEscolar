@@ -7,18 +7,18 @@
             <tr>
                 <th>Código</th>
                 <th>Nome</th>
-                <th>CPF</th>
-                <th>Data Nascimento</th>
-                <th>Telefone</th>
-                <th>E-mail</th>
+                <th>Descrição</th>
+                <th>Mensalidade</th>
+                <th>Total em Horas</th>
                 <th>Ações</th>
             </tr>
         </thead>
         <tbody id="tabela"></tbody>
     </table>
 
+
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="js/Alunos.js"></script>
+<script type="text/javascript" src="js/Clientes.js"></script>
 @endsection

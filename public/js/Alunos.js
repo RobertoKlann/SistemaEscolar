@@ -2,10 +2,10 @@ $(document).ready(function() {
     buscaDados();
 
     function buscaDados() {
-      $.getJSON("http://localhost:41121/api/clientes/", function(data, status) {
+      $.getJSON("http://localhost:8000/api/alunos/", function(data, status) {
         var sHtml = "";
         $.each(data, function(key, val) {
-          sHtml += "<tr><td>" + val.IDCliente + "</td><td>" + val.NomeCompanhia + "</td> <td>" + val.NomeContato + "</td> <td>" + val.TituloContato + "</td><td>" + val.Endereco + "</td> <td>" + val.Cidade + "</td> <td>" + val.Regiao + "</td> <td>" + val.CEP + "</td> <td><i class='far fa-edit'></i>&nbsp; <a onclick='deletar(" + val.IDCliente + ")' class='btn' id='excluir'><i class='fas fa-trash'></i></a></td></tr>";
+          sHtml += "<tr><td>" + val.alncodigo + "</td><td>" + val.alnnome + "</td> <td>" + val.alncpf + "</td> <td>" + val.alndatanascimento + "</td><td>" + val.alnfone + "</td> <td>" + val.alnemail + "</td> <td><i class='far fa-edit'></i>&nbsp; <a onclick='deletar(" + val.alncodigo + ")' class='btn' id='excluir'><i class='fas fa-trash'></i></a></td></tr>";
         });
 
         document.getElementById("tabela").innerHTML = sHtml;
@@ -13,12 +13,12 @@ $(document).ready(function() {
     };
 
     $("#confirmar").click(function() {
-      let iCodigo   = $("#IDCliente").val(),
-          sNomeCom  = $("#NomeCompanhia").val(),
-          sNomeCon  = $("#NomeContato").val(),
-          sTitulo   = $("#TituloContato").val(),
-          sEndereco = $("#Endereco").val(),
-          sCidade   = $("#Cidade").val();
+      let iCodigo   = $("#alncodigo").val(),
+          sNomeCom  = $("#alnnome").val(),
+          sNomeCon  = $("#alncpf").val(),
+          sTitulo   = $("#alndatanascimento").val(),
+          sEndereco = $("#alnfone").val(),
+          sCidade   = $("#alnemail").val();
 
       //enviado
       $.ajax({
@@ -60,7 +60,28 @@ $(document).ready(function() {
 
     });
 
+    $("#alncpf").on('keydown', function (e) {
+        var digit = e.key.replace(/\D/g, '');
+
+        var value = $(this).val().replace(/\D/g, '');
+
+        var size = value.concat(digit).length;
+
+        $(this).mask('000.000.000-00');
+    });
+
+    $("#alnfone").on('keydown', function (e) {
+        var digit = e.key.replace(/\D/g, '');
+
+        var value = $(this).val().replace(/\D/g, '');
+
+        var size = value.concat(digit).length;
+
+        $(this).mask('(00)00000-0000');
+    });
+
   });
+
 
   /**
    * Função responsável por excluir o cliente.
