@@ -19,7 +19,7 @@ class CreateTbturmasTable extends Migration
             $table->integer('trmcurso')->unsigned();
             $table->date('trmdatainicio');
             $table->date('trmdatafinal');
-            $table->date('trmtotalhoras');
+            $table->string('trmtotalhoras');
             $table->timestamps();
 
             $table->foreign('trmprofessor')->references('prfcodigo')->on('tbprofessores');

@@ -21,5 +21,5 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="js/Clientes.js"></script>
+<script type="text/javascript" src="js/Turmas.js"></script>
 @endsection

@@ -20,5 +20,5 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="js/Clientes.js"></script>
+<script type="text/javascript" src="js/Cursos.js"></script>
 @endsection
