@@ -5,10 +5,6 @@
 
 <div class="container">
     <div class="form-group">
-        <label for="alncodigo">Codigo</label>
-        <input style="width: 100px;" type="number" class="form-control" id="alncodigo" name="alncodigo"  placeholder="Código">
-    </div>
-    <div class="form-group">
         <label for="alnnome">Nome</label>
         <input style="width: 400px;" type="text" class="form-control" id="alnnome" name="alnnome" placeholder="Nome">
     </div>

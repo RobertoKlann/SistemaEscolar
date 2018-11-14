@@ -13,17 +13,17 @@ $(document).ready(function() {
     };
 
     $("#confirmar").click(function() {
-      let iCodigo   = $("#prfcodigo").val(),
-          sNomeCom  = $("#prfnome").val(),
-          sNomeCon  = $("#prfcurriculo").val(),
-          sTitulo   = $("#prfemail").val(),
-          sEndereco = $("#prffone").val();
+      let iCodigo    = $("#prfcodigo").val(),
+          sNome      = $("#prfnome").val(),
+          sCurriculo = $("#prfcurriculo").val(),
+          sEmail     = $("#prfemail").val(),
+          sFone      = $("#prffone").val();
 
       //enviado
       $.ajax({
         type: "POST",
-        url: "http://localhost:41121/api/clientes/",
-        data: JSON.stringify ({IDCliente: iCodigo, NomeCompanhia : sNomeCom, NomeContato : sNomeCon, TituloContato: sTitulo, Endereco: sEndereco, Cidade: sCidade}),
+        url: "http://localhost:8000/api/professores/",
+        data: JSON.stringify ({prfcodigo: iCodigo, prfnome : sNome, prfemail : sEmail, prffone: sFone, prfcurriculo: sCurriculo}),
         success: function(data) {
           //alert("data: " + data);
         },
@@ -45,7 +45,7 @@ $(document).ready(function() {
         //enviado
       $.ajax({
         type: "PATCH",
-        url: "http://localhost:41071/pessoa/"+ iCodigo,
+        url: "http://localhost:8000/api/professores/"+ iCodigo,
         data: JSON.stringify ({nome: sNome}),
         success: function(data) {
           alert("Alterado com Sucesso!");
@@ -69,7 +69,7 @@ $(document).ready(function() {
         $(this).mask('000.000.000-00');
     });
 
-    $("#alnfone").on('keydown', function (e) {
+    $("#prffone").on('keydown', function (e) {
         var digit = e.key.replace(/\D/g, '');
 
         var value = $(this).val().replace(/\D/g, '');
@@ -83,7 +83,7 @@ $(document).ready(function() {
 
 
   /**
-   * Função responsável por excluir o cliente.
+   * Função responsável por excluir o professor.
    */
   function deletar(iCodigo) {
     if(!iCodigo) {
@@ -92,7 +92,7 @@ $(document).ready(function() {
         //enviado
         $.ajax({
             type: "DELETE",
-            url: "http://localhost:41121/api/clientes/"+ iCodigo,
+            url: "http://localhost:8000/api/professores/"+ iCodigo,
             success: function(data) {
             alert("Excluido com Sucesso!");
             },

@@ -13,17 +13,17 @@ $(document).ready(function() {
     };
 
     $("#confirmar").click(function() {
-      let iCodigo   = $("#crocodigo").val(),
-          sNomeCom  = $("#cronome").val(),
-          sNomeCon  = $("#crodescricao").val(),
-          sTitulo   = $("#cromensalidade").val(),
-          sEndereco = $("#crototalhoras").val();
+      let iCodigo     = $("#crocodigo").val(),
+          sNome       = $("#cronome").val(),
+          sDescricao  = $("#crodescricao").val(),
+          sMensalida  = $("#cromensalidade").val(),
+          sTotalHoras = $("#crototalhoras").val();
 
       //enviado
       $.ajax({
         type: "POST",
-        url: "http://localhost:41121/api/clientes/",
-        data: JSON.stringify ({IDCliente: iCodigo, NomeCompanhia : sNomeCom, NomeContato : sNomeCon, TituloContato: sTitulo, Endereco: sEndereco, Cidade: sCidade}),
+        url: "http://localhost:8000/api/cursos/",
+        data: JSON.stringify ({crocodigo: iCodigo, cronome : sNome, crodescricao : sDescricao, cromensalidade: sMensalida, crototalhoras: sTotalHoras}),
         success: function(data) {
           //alert("data: " + data);
         },
@@ -45,7 +45,7 @@ $(document).ready(function() {
         //enviado
       $.ajax({
         type: "PATCH",
-        url: "http://localhost:41071/pessoa/"+ iCodigo,
+        url: "http://localhost:8000/api/cursos/"+ iCodigo,
         data: JSON.stringify ({nome: sNome}),
         success: function(data) {
           alert("Alterado com Sucesso!");
@@ -57,26 +57,6 @@ $(document).ready(function() {
       });
       }
 
-    });
-
-    $("#alncpf").on('keydown', function (e) {
-        var digit = e.key.replace(/\D/g, '');
-
-        var value = $(this).val().replace(/\D/g, '');
-
-        var size = value.concat(digit).length;
-
-        $(this).mask('000.000.000-00');
-    });
-
-    $("#alnfone").on('keydown', function (e) {
-        var digit = e.key.replace(/\D/g, '');
-
-        var value = $(this).val().replace(/\D/g, '');
-
-        var size = value.concat(digit).length;
-
-        $(this).mask('(00)00000-0000');
     });
 
   });
@@ -92,7 +72,7 @@ $(document).ready(function() {
         //enviado
         $.ajax({
             type: "DELETE",
-            url: "http://localhost:41121/api/clientes/"+ iCodigo,
+            url: "http://localhost:8000/api/cursos/"+ iCodigo,
             success: function(data) {
             alert("Excluido com Sucesso!");
             },

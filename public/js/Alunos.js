@@ -14,17 +14,17 @@ $(document).ready(function() {
 
     $("#confirmar").click(function() {
       let iCodigo   = $("#alncodigo").val(),
-          sNomeCom  = $("#alnnome").val(),
-          sNomeCon  = $("#alncpf").val(),
-          sTitulo   = $("#alndatanascimento").val(),
-          sEndereco = $("#alnfone").val(),
-          sCidade   = $("#alnemail").val();
+          sNome     = $("#alnnome").val(),
+          sCpf      = $("#alncpf").val(),
+          sDataNasc = $("#alndatanascimento").val(),
+          sFone     = $("#alnfone").val(),
+          sEmail   = $("#alnemail").val();
 
       //enviado
       $.ajax({
         type: "POST",
-        url: "http://localhost:41121/api/clientes/",
-        data: JSON.stringify ({IDCliente: iCodigo, NomeCompanhia : sNomeCom, NomeContato : sNomeCon, TituloContato: sTitulo, Endereco: sEndereco, Cidade: sCidade}),
+        url: "http://localhost:8000/api/alunos/",
+        data: JSON.stringify ({alncodigo: iCodigo, alnnome : sNome, alncpf : sCpf, alndatanascimento: sDataNasc, alnfone: sFone, alnemail: sEmail}),
         success: function(data) {
           //alert("data: " + data);
         },
@@ -46,7 +46,7 @@ $(document).ready(function() {
         //enviado
       $.ajax({
         type: "PATCH",
-        url: "http://localhost:41071/pessoa/"+ iCodigo,
+        url: "http://localhost:8000/api/alunos/"+ iCodigo,
         data: JSON.stringify ({nome: sNome}),
         success: function(data) {
           alert("Alterado com Sucesso!");
@@ -93,7 +93,7 @@ $(document).ready(function() {
         //enviado
         $.ajax({
             type: "DELETE",
-            url: "http://localhost:41121/api/clientes/"+ iCodigo,
+            url: "http://localhost:8000/api/alunos/"+ iCodigo,
             success: function(data) {
             alert("Excluido com Sucesso!");
             },

@@ -5,10 +5,6 @@
 
 <div class="container">
     <div class="form-group">
-        <label for="prfcodigo">Código</label>
-        <input style="width: 100px;" type="number" class="form-control" id="prfcodigo" name="prfcodigo"  placeholder="Código">
-    </div>
-    <div class="form-group">
         <label for="prfnome">Nome</label>
         <input style="width: 400px;" type="text" class="form-control" id="prfnome" name="prfnome" placeholder="Nome">
     </div>
@@ -33,5 +29,6 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="js/Clientes.js"></script>
+<script type="text/javascript" src="js/mask.js"></script>
+<script type="text/javascript" src="js/Professores.js"></script>
 @endsection

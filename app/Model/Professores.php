@@ -17,7 +17,7 @@ class Professores extends Model {
 
     protected $table      = 'tbprofessores';
     protected $fillable   = array('prfcodigo', 'prfnome', 'prfcurriculo', 'prfemail', 'prffone');
-    protected $primaryKey = 'crocodigo';
+    protected $primaryKey = 'prfcodigo';
     public    $timestamps = false;
 
     /**
