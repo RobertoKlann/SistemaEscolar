@@ -1,5 +1,7 @@
 $(document).ready(function() {
     buscaDados();
+    buscaProfessores();
+    buscaCursos()
 
     function buscaDados() {
       $.getJSON("http://localhost:8000/api/turmas/", function(data, status) {
@@ -12,19 +14,77 @@ $(document).ready(function() {
       });
     };
 
+    /**
+     * Busca os professores cadastrados.
+     */
+    function buscaProfessores() {
+      var oCampoProfessor = document.getElementById('professores');
+      if(!oCampoProfessor) {
+        return;
+      }
+
+      $.getJSON("http://localhost:8000/api/professores/", function(data, status) {
+
+          var oCampoProfessor = document.getElementById('professores');
+          var aProfessores    = [];
+
+        $.each(data, function(key, val) {
+          addOption(val.prfcodigo, val.prfnome);
+        });
+      });
+    }
+
+    /**
+     * Cria e adiciona um option do Professor
+     */
+    function addOption(value, valor) {
+      var option = new Option(valor, value);
+      var select = document.getElementById("professores");
+      select.appendChild(option);
+    }
+
+    /**
+     * Busca os cursos cadastrados
+     */
+    function buscaCursos() {
+      var oCampoCurso = document.getElementById('cursos');
+      if(!oCampoCurso) {
+        return;
+      }
+
+      $.getJSON("http://localhost:8000/api/cursos/", function(data, status) {
+
+          var oCampoProfessor = document.getElementById('cursos');
+          var aProfessores    = [];
+
+        $.each(data, function(key, val) {
+          addOptionCurso(val.crocodigo, val.cronome);
+        });
+      });
+    }
+
+    /**
+     * Cria e adiciona um Option do Curso.
+     */
+    function addOptionCurso(value, valor) {
+      var option = new Option(valor, value);
+      var select = document.getElementById("cursos");
+      select.appendChild(option);
+    }
+
     $("#confirmar").click(function() {
-      let iCodigo   = $("#trmcodigo").val(),
-          sNomeCom  = $("#trmcurso").val(),
-          sNomeCon  = $("#trmprofessor").val(),
-          sTitulo   = $("#trmdatainicio").val(),
-          sEndereco = $("#trmdatafinal").val(),
-          sEndereco = $("#trmtotalhoras").val();
+      let iCodigo     = $("#trmcodigo").val(),
+          iCurso      = $("#cursos").val(),
+          iProfessor  = $("#professores").val(),
+          sDataInicio = $("#trmdatainicio").val(),
+          sDataFinal  = $("#trmdatafinal").val(),
+          sTotalHoras = $("#trmtotalhoras").val();
 
       //enviado
       $.ajax({
         type: "POST",
-        url: "http://localhost:41121/api/clientes/",
-        data: JSON.stringify ({IDCliente: iCodigo, NomeCompanhia : sNomeCom, NomeContato : sNomeCon, TituloContato: sTitulo, Endereco: sEndereco, Cidade: sCidade}),
+        url: "http://localhost:8000/api/turmas/",
+        data: JSON.stringify ({trmcodigo: iCodigo, trmcurso : iCurso, trmprofessor : iProfessor, trmdatainicio: sDataInicio, trmdatafinal: sDataFinal, trmtotalhoras: sTotalHoras}),
         success: function(data) {
           //alert("data: " + data);
         },
@@ -32,7 +92,6 @@ $(document).ready(function() {
         dataType: "json"
       }).then(res => {
         alert('Cadastro realizado com sucesso!');
-        buscaDados();
       });
     });
 
@@ -60,26 +119,6 @@ $(document).ready(function() {
 
     });
 
-    $("#alncpf").on('keydown', function (e) {
-        var digit = e.key.replace(/\D/g, '');
-
-        var value = $(this).val().replace(/\D/g, '');
-
-        var size = value.concat(digit).length;
-
-        $(this).mask('000.000.000-00');
-    });
-
-    $("#alnfone").on('keydown', function (e) {
-        var digit = e.key.replace(/\D/g, '');
-
-        var value = $(this).val().replace(/\D/g, '');
-
-        var size = value.concat(digit).length;
-
-        $(this).mask('(00)00000-0000');
-    });
-
   });
 
 
@@ -93,7 +132,7 @@ $(document).ready(function() {
         //enviado
         $.ajax({
             type: "DELETE",
-            url: "http://localhost:41121/api/clientes/"+ iCodigo,
+            url: "http://localhost:8000/api/turmas/"+ iCodigo,
             success: function(data) {
             alert("Excluido com Sucesso!");
             },
@@ -103,4 +142,5 @@ $(document).ready(function() {
             $("#buscar").click();
         });
     }
+
 }

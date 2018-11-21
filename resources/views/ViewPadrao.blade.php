@@ -14,6 +14,7 @@
             <div class ="container">
                 <div class ="navbar-header">
                     <a href ="/consultaPadrao" class ="navbar-brand">Sistema Escolar</a>
+                    <a style="float: right;" href ="/consultaPadrao" class ="navbar-brand">Administrador</a>
                 </div>
                 <div>
                     <ul class="nav nav-tabs">
@@ -45,7 +46,7 @@
                           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Turmas</a>
                           <div class="dropdown-menu">
                             <a class="dropdown-item" href="/consultaTurma" id="buscar">Consultar Turmas</a>
-                            <a class="dropdown-item" href="/cadastroTurma">Cadastrar Turma</a>
+                            <a class="dropdown-item" id="cadastroTurma" href="/cadastroTurma">Cadastrar Turma</a>
                           </div>
                         </li>
                     </ul>

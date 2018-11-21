@@ -5,23 +5,13 @@
 
 <div class="container">
     <div class="form-group">
-        <label for="trmcodigo">Codigo</label>
-        <input style="width: 100px;" type="number" class="form-control" id="trmcodigo" name="trmcodigo"  placeholder="Código">
-    </div>
-    <div class="form-group">
         <label for="trmprofessor">Professor</label>
-        <select style="width: 300px;" type="text" class="form-control">
-            <option value="volvo">Professor um</option>
-            <option value="saab">Professor um</option>
-            <option value="mercedes">Professor um</option>
+        <select id="professores"  style="width: 300px;" type="text" class="form-control">
         </select>
     </div>
     <div class="form-group">
         <label for="trmcurso">Curso</label>
-        <select style="width: 300px;" type="text" class="form-control">
-            <option value="volvo">Curso um</option>
-            <option value="saab">Curso um</option>
-            <option value="mercedes">Curso um</option>
+        <select id="cursos" style="width: 300px;" type="text" class="form-control">
         </select>
     </div>
     <div class="form-group">
@@ -45,5 +35,5 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="js/Clientes.js"></script>
+<script type="text/javascript" src="js/Turmas.js"></script>
 @endsection

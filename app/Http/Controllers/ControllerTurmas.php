@@ -34,8 +34,8 @@ class ControllerTurmas extends BaseController {
     /**
      * Retorna o turma passado por parâmetro.
      */
-    public function getCurso($iId) {
-        $oTurma = $this->turma->getCurso($iId);
+    public function getTurma($iId) {
+        $oTurma = $this->turma->getTurma($iId);
         if(!$oTurma) {
             return response()->json(['response','turma não encontrada'], 400)->header("Content-Type","application/json");
         }
@@ -46,15 +46,15 @@ class ControllerTurmas extends BaseController {
     /**
      * Cadastra um novo turma.
      */
-    public function saveCurso() {
-        return response()->json($this->turma->saveCurso(), 201)->header("Content-Type","application/json");
+    public function saveTurma() {
+        return response()->json($this->turma->saveTurma(), 201)->header("Content-Type","application/json");
     }
 
     /**
      * Realiza o update no turma com o id passado por parâmetro.
      */
-    public function updateCurso($iId) {
-        $oTurma = $this->turma->updateCursoFromId($iId);
+    public function updateTurma($iId) {
+        $oTurma = $this->turma->updateTurmaFromId($iId);
 
         if(!$oTurma) {
             return response()->json(['response', 'turma não encontrado'], 400)->header("Content-Type", "application/json");
@@ -63,8 +63,8 @@ class ControllerTurmas extends BaseController {
         return response()->json($oTurma, 200)->header("Content-Type", "application/json");
     }
 
-    public function deleteCurso($iId) {
-        $oTurma = $this->turma->deleteCursoFromId($iId);
+    public function deleteTurma($iId) {
+        $oTurma = $this->turma->deleteTurmaFromId($iId);
 
         if(!$oTurma) {
             return response()->json(['response', 'turma não encontrado'], 400)->header("Content-Type", "application/json");
