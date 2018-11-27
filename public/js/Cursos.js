@@ -31,7 +31,7 @@ $(document).ready(function() {
         dataType: "json"
       }).then(res => {
         alert('Cadastro realizado com sucesso!');
-        buscaDados();
+        window.location="http://localhost:8000/consultaCurso";
       });
     });
 
@@ -49,6 +49,7 @@ $(document).ready(function() {
         data: JSON.stringify ({nome: sNome}),
         success: function(data) {
           alert("Alterado com Sucesso!");
+          window.location="http://localhost:8000/consultaCurso";
         },
         contentType: "application/json",
         dataType: "json"
@@ -75,6 +76,7 @@ $(document).ready(function() {
             url: "http://localhost:8000/api/cursos/"+ iCodigo,
             success: function(data) {
             alert("Excluido com Sucesso!");
+            window.location="http://localhost:8000/consultaCurso";
             },
             contentType: "application/json",
             dataType: "json"

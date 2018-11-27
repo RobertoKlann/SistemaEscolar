@@ -5,7 +5,7 @@ $(document).ready(function() {
       $.getJSON("http://localhost:8000/api/alunos/", function(data, status) {
         var sHtml = "";
         $.each(data, function(key, val) {
-          sHtml += "<tr><td>" + val.alncodigo + "</td><td>" + val.alnnome + "</td> <td>" + val.alncpf + "</td> <td>" + val.alndatanascimento + "</td><td>" + val.alnfone + "</td> <td>" + val.alnemail + "</td> <td><i class='far fa-edit'></i>&nbsp; <a onclick='deletar(" + val.alncodigo + ")' class='btn' id='excluir'><i class='fas fa-trash'></i></a></td></tr>";
+          sHtml += "<tr><td>" + val.alncodigo + "</td><td>" + val.alnnome + "</td> <td>" + val.alncpf + "</td> <td>" + val.alndatanascimento + "</td><td>" + val.alnfone + "</td> <td>" + val.alnemail + "</td> <td><a onclick='alterar(" + val.alncodigo + ")' class='btn' id='alterar'><i class='far fa-edit'></i></a>&nbsp; <a onclick='deletar(" + val.alncodigo + ")' class='btn' id='excluir'><i class='fas fa-trash'></i></a></td></tr>";
         });
 
         document.getElementById("tabela").innerHTML = sHtml;
@@ -32,7 +32,7 @@ $(document).ready(function() {
         dataType: "json"
       }).then(res => {
         alert('Cadastro realizado com sucesso!');
-        buscaDados();
+        window.location="http://localhost:8000/consultaAlunos";
       });
     });
 
@@ -50,6 +50,7 @@ $(document).ready(function() {
         data: JSON.stringify ({nome: sNome}),
         success: function(data) {
           alert("Alterado com Sucesso!");
+          window.location="http://localhost:8000/consultaAlunos";
         },
         contentType: "application/json",
         dataType: "json"
@@ -82,6 +83,26 @@ $(document).ready(function() {
 
   });
 
+  function alterar(iCodigo) {
+    if(!iCodigo) {
+
+    } else {
+        //enviado
+        $.ajax({
+            type: "PUT",
+            url: "http://localhost:8000/api/alunos/"+ iCodigo,
+            success: function(data) {
+            alert("Alterado com Sucesso!");
+            window.location="http://localhost:8000/consultaAlunos";
+            },
+            contentType: "application/json",
+            dataType: "json"
+        }).then(res => {
+            $("#buscar").click();
+        });
+    }
+  }
+
 
   /**
    * Função responsável por excluir o cliente.
@@ -96,6 +117,7 @@ $(document).ready(function() {
             url: "http://localhost:8000/api/alunos/"+ iCodigo,
             success: function(data) {
             alert("Excluido com Sucesso!");
+            window.location="http://localhost:8000/consultaAlunos";
             },
             contentType: "application/json",
             dataType: "json"
